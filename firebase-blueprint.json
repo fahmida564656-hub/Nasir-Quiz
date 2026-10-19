@@ -1,0 +1,41 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile and Game Progress",
+      "description": "Stores user hero stats, level, coins, equipped avatars, unlocked characters, and accessories",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 100 },
+        "email": { "type": "string", "maxLength": 150 },
+        "avatarEmoji": { "type": "string", "maxLength": 32 },
+        "superheroTitle": { "type": "string", "maxLength": 100 },
+        "superheroPower": { "type": "string", "maxLength": 100 },
+        "slogan": { "type": "string", "maxLength": 200 },
+        "grade": { "type": "string", "maxLength": 50 },
+        "equippedRoom": { "type": "string", "maxLength": 100 },
+        "equippedAccessory": { "type": "string", "maxLength": 100 },
+        "coins": { "type": "number" },
+        "currentLevel": { "type": "number" },
+        "totalCorrect": { "type": "number" },
+        "totalWrong": { "type": "number" },
+        "totalRounds": { "type": "number" },
+        "streak": { "type": "number" },
+        "unlockedCharacters": {
+          "type": "array",
+          "description": "List of unlocked character IDs"
+        },
+        "claimedBonus": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userId", "name", "coins", "currentLevel", "totalCorrect", "totalWrong"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile, superhero stats, customized room, and progression"
+    }
+  }
+}

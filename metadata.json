@@ -1,0 +1,6 @@
+{
+  "name": "নাসির কুইজ",
+  "description": "নাসির কুইজ - বাচ্চাদের জন্য সুপারহিরো বাংলা কুইজ অ্যাডভেঞ্চার, শুক্রবারের ১০০০ মেগা বোনাস এবং কাস্টমাইজেশন টুলস।",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
