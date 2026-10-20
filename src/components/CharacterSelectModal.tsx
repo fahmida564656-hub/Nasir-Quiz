@@ -10,6 +10,7 @@ interface CharacterSelectModalProps {
   activeCharacterId: string;
   unlockedCharacterIds: string[];
   userCoins: number;
+  isOnline?: boolean;
   onSelectCharacter: (char: Character) => void;
   onUnlockCharacter: (char: Character) => void;
   onClose: () => void;
@@ -20,6 +21,7 @@ export const CharacterSelectModal: React.FC<CharacterSelectModalProps> = ({
   activeCharacterId,
   unlockedCharacterIds,
   userCoins,
+  isOnline = true,
   onSelectCharacter,
   onUnlockCharacter,
   onClose,
@@ -96,6 +98,14 @@ export const CharacterSelectModal: React.FC<CharacterSelectModalProps> = ({
           </div>
         </div>
 
+        {/* Offline Warning Banner */}
+        {!isOnline && (
+          <div className="mb-3 p-3 rounded-2xl bg-amber-950/70 border border-amber-500/50 text-amber-200 text-xs font-bold flex items-center gap-2 shadow-xs">
+            <span>⚠️</span>
+            <span>অফলাইন মোড: নতুন ক্যারেক্টার আনলক করার জন্য ইন্টারনেট সংযোগ প্রয়োজন।</span>
+          </div>
+        )}
+
         {/* Characters Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 my-4 max-h-[50vh] overflow-y-auto pr-1 custom-scrollbar">
           {filteredCharacters.map(char => {
@@ -163,9 +173,11 @@ export const CharacterSelectModal: React.FC<CharacterSelectModalProps> = ({
                   ) : (
                     <button
                       onClick={() => onUnlockCharacter(char)}
-                      disabled={!canAfford}
+                      disabled={!canAfford || !isOnline}
                       className={`w-full py-2 px-3 rounded-xl font-black text-xs flex items-center justify-center gap-1.5 transition-colors ${
-                        canAfford
+                        !isOnline
+                          ? 'bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700'
+                          : canAfford
                           ? 'bg-amber-500 hover:bg-amber-400 text-slate-950 cursor-pointer shadow-md'
                           : 'bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700'
                       }`}

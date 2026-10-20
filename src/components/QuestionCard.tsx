@@ -59,14 +59,14 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: -18, scale: 0.99 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
-        className={`p-5 sm:p-7 transition-all ${activeTheme.cardBg} ${frameConfig.className}`}
+        className={`p-5 sm:p-7 transition-all bg-white dark:bg-slate-900/95 border-2 border-slate-200 dark:border-indigo-500/40 text-slate-900 dark:text-white shadow-xl ${frameConfig.className}`}
       >
         {/* Top Meta Bar: Category, Progress & Tools */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-black/10">
+        <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
           {/* Category Badge */}
           <div className="flex items-center gap-2">
             <span className="text-xl">{currentCategory.icon}</span>
-            <span className="text-xs sm:text-sm font-bold">
+            <span className="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100">
               {currentCategory.name}
             </span>
           </div>

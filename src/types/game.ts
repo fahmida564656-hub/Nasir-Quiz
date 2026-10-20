@@ -89,6 +89,17 @@ export interface AnswerRecord {
   explanation: string;
 }
 
+export type SoundPackId = 'funny-cartoon' | 'epic-hero' | 'futuristic' | 'gentle-melody';
+
+export interface SoundPackInfo {
+  id: SoundPackId;
+  name: string;
+  tagline: string;
+  emoji: string;
+  badge: string;
+  description: string;
+}
+
 export interface UserProfile {
   userId?: string;
   isLoggedIn: boolean;
@@ -101,6 +112,7 @@ export interface UserProfile {
   grade: string;
   equippedRoom?: string;
   equippedAccessory?: string;
+  soundPack?: SoundPackId;
   claimedBonus: boolean;
   joinedDate: string;
 }

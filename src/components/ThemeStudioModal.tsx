@@ -12,6 +12,7 @@ interface ThemeStudioModalProps {
   unlockedFrameStyles: CardFrameStyle[];
   userCoins: number;
   autoTreeLevel: number;
+  isOnline?: boolean;
   onSelectTheme: (themeId: ThemeId) => void;
   onUnlockTheme: (theme: ThemeConfig) => void;
   onSelectFrame: (style: CardFrameStyle) => void;
@@ -27,6 +28,7 @@ export const ThemeStudioModal: React.FC<ThemeStudioModalProps> = ({
   unlockedFrameStyles,
   userCoins,
   autoTreeLevel,
+  isOnline = true,
   onSelectTheme,
   onUnlockTheme,
   onSelectFrame,
@@ -71,6 +73,14 @@ export const ThemeStudioModal: React.FC<ThemeStudioModalProps> = ({
             <span>{toBengaliNumber(userCoins)} কয়েন</span>
           </div>
         </div>
+
+        {/* Offline Warning Notice */}
+        {!isOnline && (
+          <div className="mb-4 p-3 rounded-2xl bg-amber-50 border border-amber-300 text-amber-900 text-xs font-bold flex items-center gap-2 shadow-2xs">
+            <span>⚠️</span>
+            <span>অফলাইন মোড: নতুন রঙের থিম কেনার জন্য ইন্টারনেট সংযোগ প্রয়োজন।</span>
+          </div>
+        )}
 
         {/* SECTION 1: Color Themes */}
         <div className="my-5">

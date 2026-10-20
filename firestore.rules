@@ -35,6 +35,7 @@ service cloud.firestore {
         (!('grade' in data) || (data.grade is string && data.grade.size() <= 50)) &&
         (!('equippedRoom' in data) || (data.equippedRoom is string && data.equippedRoom.size() <= 100)) &&
         (!('equippedAccessory' in data) || (data.equippedAccessory is string && data.equippedAccessory.size() <= 100)) &&
+        (!('soundPack' in data) || (data.soundPack is string && data.soundPack.size() <= 32)) &&
         (!('totalRounds' in data) || (data.totalRounds is number && data.totalRounds >= 0)) &&
         (!('streak' in data) || (data.streak is number && data.streak >= 0)) &&
         (!('claimedBonus' in data) || (data.claimedBonus is bool)) &&
@@ -58,7 +59,8 @@ service cloud.firestore {
       allow get: if isSignedIn() && request.auth.uid == userId && isValidId(userId);
       allow list: if false;
       allow create: if isSignedIn() && request.auth.uid == userId && isValidId(userId) && isValidUser(incoming()) && incoming().userId == userId;
-      allow update: if isSignedIn() && request.auth.uid == userId && isValidId(userId) && isValidUser(incoming()) && incoming().userId == existing().userId;
+      allow update: if isSignedIn() && request.auth.uid == userId && isValidId(userId) && isValidUser(incoming()) && incoming().userId == existing().userId &&
+        (!('claimedBonus' in existing()) || existing().claimedBonus != true || incoming().claimedBonus == true);
       allow delete: if false;
     }
   }

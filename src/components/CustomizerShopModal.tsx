@@ -13,6 +13,7 @@ interface CustomizerShopModalProps {
   selectedLogoUpgrade: string;
   unlockedLogoUpgradeIds: string[];
   userCoins: number;
+  isOnline?: boolean;
   onSelectTextColor: (colorHex: string) => void;
   onUnlockTextColor: (item: CustomTextColor) => void;
   onSelectLogoUpgrade: (id: string) => void;
@@ -28,6 +29,7 @@ export const CustomizerShopModal: React.FC<CustomizerShopModalProps> = ({
   selectedLogoUpgrade,
   unlockedLogoUpgradeIds,
   userCoins,
+  isOnline = true,
   onSelectTextColor,
   onUnlockTextColor,
   onSelectLogoUpgrade,
@@ -100,6 +102,14 @@ export const CustomizerShopModal: React.FC<CustomizerShopModalProps> = ({
             <span>তোমার কয়েন: {toBengaliNumber(userCoins)}</span>
           </div>
         </div>
+
+        {/* Offline Warning Notice */}
+        {!isOnline && (
+          <div className="mb-4 p-3 rounded-2xl bg-amber-50 border border-amber-300 text-amber-900 text-xs font-bold flex items-center gap-2 shadow-2xs">
+            <span>⚠️</span>
+            <span>অফলাইন মোড সক্রিয়: নতুন আইটেম বা রং কেনার জন্য ইন্টারনেট সংযোগ প্রয়োজন।</span>
+          </div>
+        )}
 
         {/* SECTION 1: Text Colors */}
         <div className="my-5">
